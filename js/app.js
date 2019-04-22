@@ -153,8 +153,7 @@ function filter_results() {
 
       if (include && includedPackages.length > 0 && isValue(pkg)) {
         for(var i in includedPackages) {
-          var re = includedPackages[i];
-          if (!re.test(pkg)) {
+          if (!includedPackages[i].test(pkg)) {
             include = false;
             break;
           }
@@ -162,9 +161,8 @@ function filter_results() {
       }
 
       if (include && excludedPackages.length > 0 && isValue(pkg)) {
-        for(var i in excludedPackages) {
-          var re = excludedPackages[i];
-          if (re.test(pkg)) {
+        for(var e in excludedPackages) {
+          if (excludedPackages[e].test(pkg)) {
             include = false;
             break;
           }
