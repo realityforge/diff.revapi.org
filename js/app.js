@@ -431,7 +431,7 @@ function elementSignatureToHtml(signature) {
       ret += typeParametersToHtml(parsedSignature["typeParameters"]);
       ret += "&nbsp;";
       ret += typeToHtml(parsedSignature["returnType"], "return-type");
-      ret += "&nbsp;"
+      ret += "&nbsp;";
       ret += typeToHtml(parsedSignature["declaringType"], "declaring-type");
       ret += "<span class='keyword'>::</span><span class='method-name'>" + parsedSignature["methodName"] + "</span>";
       ret += parametersToHtml(parsedSignature["parameters"]);
@@ -443,7 +443,7 @@ function elementSignatureToHtml(signature) {
       ret += typeParametersToHtml(parsedSignature["typeParameters"]);
       ret += "&nbsp;";
       ret += typeToHtml(parsedSignature["returnType"], "return-type");
-      ret += "&nbsp;"
+      ret += "&nbsp;";
       ret += typeToHtml(parsedSignature["declaringType"], "declaring-type");
       ret += "<span class='keyword'>::</span><span>" + parsedSignature["methodName"] + "</span>";
       ret += parametersToHtml(parsedSignature["parameters"], parsedSignature["selectedParameterIndex"]);
