@@ -1,8 +1,9 @@
-// Generated automatically by nearley
+// Generated automatically by nearley, version 2.16.0
 // http://github.com/Hardmath123/nearley
 (function () {
-function id(x) {return x[0]; }
+function id(x) { return x[0]; }
 var grammar = {
+    Lexer: undefined,
     ParserRules: [
     {"name": "Main", "symbols": ["Class"]},
     {"name": "Main", "symbols": ["Field"]},
@@ -26,7 +27,10 @@ var grammar = {
         }
         },
     {"name": "Field$string$1", "symbols": [{"literal":"f"}, {"literal":"i"}, {"literal":"e"}, {"literal":"l"}, {"literal":"d"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "Field", "symbols": ["Field$string$1", "_", "Type", {"literal":"."}, "Identifier"], "postprocess": 
+    {"name": "Field$ebnf$1$subexpression$1", "symbols": ["_", {"literal":"@"}, "_", "Type"]},
+    {"name": "Field$ebnf$1", "symbols": ["Field$ebnf$1$subexpression$1"], "postprocess": id},
+    {"name": "Field$ebnf$1", "symbols": [], "postprocess": function(d) {return null;}},
+    {"name": "Field", "symbols": ["Field$string$1", "_", "Type", {"literal":"."}, "Identifier", "Field$ebnf$1"], "postprocess": 
         function(d) {
         	var ret = d[2];
         	ret["elementType"] = "field";
@@ -185,8 +189,8 @@ var grammar = {
         function(d) { return d[0] + d[1].map(function(e) {return e.join("")}).join(""); }
         },
     {"name": "Identifier$ebnf$1", "symbols": []},
-    {"name": "Identifier$ebnf$1", "symbols": ["Identifier$ebnf$1", /[a-zA-Z0-9$_]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "Identifier", "symbols": [/[a-zA-Z$_]/, "Identifier$ebnf$1"], "postprocess": 
+    {"name": "Identifier$ebnf$1", "symbols": ["Identifier$ebnf$1", /[a-zA-Z0-9$_>]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "Identifier", "symbols": [/[<a-zA-Z$_]/, "Identifier$ebnf$1"], "postprocess": 
         function(d) { return d[0] + d[1].join(""); }
         },
     {"name": "TypeParameters$ebnf$1", "symbols": ["_"], "postprocess": id},

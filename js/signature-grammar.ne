@@ -11,7 +11,7 @@ Class -> ("class" | "missing-class" | "interface" | "enum" | "@interface" ) _ Ty
 %}
 
 
-Field -> "field" _ Type "." Identifier {%
+Field -> "field" _ Type "." Identifier (_ "@" _ Type):? {%
 	function(d) {
 		var ret = d[2];
 		ret["elementType"] = "field";
@@ -106,7 +106,7 @@ ClassName -> Identifier ("." Identifier):* {%
 	function(d) { return d[0] + d[1].map(function(e) {return e.join("")}).join(""); }
 %}
 
-Identifier -> [a-zA-Z$_] [a-zA-Z0-9$_]:* {%
+Identifier -> [<a-zA-Z$_] [a-zA-Z0-9$_>]:* {%
 	function(d) { return d[0] + d[1].join(""); }
 %}
 
