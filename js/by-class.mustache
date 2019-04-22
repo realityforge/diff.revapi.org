@@ -9,6 +9,12 @@
            data-semantic-severity="{{classification.SEMANTIC}}" data-max-severity="{{maxSeverity}}" data-old-module="{{oldElementModule}}" data-new-module="{{newElementModule}}">
         <table width="100%">
           <tbody>
+          {{#element}}
+            <tr>
+              <th>Element</th>
+              <td class="element">{{{element}}}</td>
+            </tr>
+          {{/element}}
           {{#oldElement}}
             <tr>
               <th colspan="2">Old Element&nbsp;<small style="font-weight: normal">(module: <b>{{oldElementModule}}</b>)</small></th>

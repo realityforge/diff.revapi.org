@@ -230,12 +230,18 @@ function transformResultsByClass(diffs) {
       classDef["differences"] = classDiffs;
     }
 
-    if (d["oldElement"] !== null) {
-      d["oldElement"] = elementSignatureToHtml(d["oldElement"]);
-    }
+    if ( d["oldElement"] != d["newElement"] ) {
+      if (d["oldElement"] !== null) {
+        d["oldElement"] = elementSignatureToHtml(d["oldElement"]);
+      }
 
-    if (d["newElement"] !== null) {
-      d["newElement"] = elementSignatureToHtml(d["newElement"]);
+      if (d["newElement"] !== null) {
+        d["newElement"] = elementSignatureToHtml(d["newElement"]);
+      }
+    } else {
+      d["element"] = elementSignatureToHtml(d["newElement"]);
+      d["oldElement"] = null;
+      d["newElement"] = null;
     }
 
     var maxSeverity = -1;
