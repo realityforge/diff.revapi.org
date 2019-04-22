@@ -215,24 +215,9 @@ function apiCheck(oldArtifact, newArtifact) {
       "old": oldArtifact,
       'new': newArtifact
     },
-    "error": function (xhr, status) {
+    "error": function () {
       CURRENT_RESULTS = null;
-      var message;
-      if (xhr.status === 500 || xhr.status === 400) {
-        var error = JSON.parse(xhr.responseText);
-        message = error["errorMessage"];
-      } else {
-        switch (xhr.status) {
-          case 502: case 503: case 504:
-          message = "Backend temporarily unavailable.";
-          break;
-          default:
-            message = "Backend returned HTTP error status: " + xhr.status;
-        }
-      }
-
-      $("#results").html("<h5>Error</h5>" +
-          "<div class='row'><pre class='left'>" + message + "</pre></div>");
+      $("#results").html("<h5>Error</h5><div class='row'><pre class='left'>Unable to locate API diff file.</pre></div>");
     },
     "converters": {
       "text json": true
