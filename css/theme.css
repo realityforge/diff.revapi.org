@@ -264,3 +264,7 @@ label[for] {
       -webkit-transform: scale(1.0);
     }
 }
+
+.small-header {
+  font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0;
+}
