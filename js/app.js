@@ -134,14 +134,6 @@ function filter_results() {
     }
   });
 
-  var includedModules = [];
-  $("#include-modules").find("input").each(function () {
-    if (this.checked) {
-      var moduleName = this.id.substr("incl-module-".length);
-      includedModules.push(moduleName);
-    }
-  });
-
   var hideFiltered = function (el, role) {
     var elSev = Number(el.attr("data-max-severity"));
 
@@ -168,16 +160,6 @@ function filter_results() {
           }
         }
       }
-    } else {
-      var oldModule = el.attr("data-old-module");
-      var newModule = el.attr("data-new-module");
-      if (include && $.inArray(oldModule, includedModules) < 0 && $.inArray(newModule, includedModules) < 0) {
-        include = false;
-      }
-
-      include = include && (includeDeps
-          || ((isValue(oldModule) && oldModule.startsWith(mainModulePrefix))
-              || (isValue(newModule) && newModule.startsWith(mainModulePrefix))));
     }
 
     if (!include) {
