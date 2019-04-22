@@ -65,7 +65,12 @@ function wireUp() {
     var oldVersion = queryParams["old"];
     var newVersion = queryParams["new"];
 
-    if (title !== undefined && key !== undefined && oldVersion !== undefined && newVersion !== undefined) {
+    var pathPatterns = new RegExp("[\\\/]");
+    if( pathPatterns.test(key) || pathPatterns.test(oldVersion) || pathPatterns.test(newVersion) ) {
+      results.html("<h5>Error</h5><div class='row'><pre class='left'>Malformed query parameter. Must not attempt to walk paths.</pre></div>").show();
+      return;
+    }
+    else if (title !== undefined && key !== undefined && oldVersion !== undefined && newVersion !== undefined) {
       loadApiDiff(title, key, oldVersion, newVersion);
       return
     }
