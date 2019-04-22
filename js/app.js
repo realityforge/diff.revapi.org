@@ -215,8 +215,6 @@ function loadApiDiff(title, key, oldVersion, newVersion) {
 }
 
 function layoutResults() {
-  layoutModuleFiltering();
-
   if (CURRENT_RESULTS.length === 0) {
     $("#results").html("<div>No API differences found. Yay!</div>");
     return;
@@ -226,35 +224,6 @@ function layoutResults() {
     var data = transformResultsByClass(CURRENT_RESULTS);
     $("#results").html(Mustache.render(tmpl, data));
   });
-}
-
-function layoutModuleFiltering() {
-  var inclMods = $("#include-modules");
-  inclMods.children().remove();
-
-  if (CURRENT_RESULTS.length === 0) {
-    inclMods.html("Filtering by modules doesn't make sense with no API differences.");
-    return;
-  }
-
-  var modules = {};
-
-  CURRENT_RESULTS.forEach(function (d) {
-    if (isValue(d["oldElementModule"]) && d["oldElementModule"].length > 0) {
-      modules[d["oldElementModule"]] = true;
-    }
-
-    if (isValue(d["newElementModule"]) && d["newElementModule"].length > 0) {
-      modules[d["newElementModule"]] = true;
-    }
-  });
-
-  var inclhtml = "";
-  for (m in modules) {
-    inclhtml += "<div><input type='checkbox' id='incl-module-" + m + "' name = 'incl-module-" + m + "' checked onchange='filter_results()'/><label for='incl-module-" + m + "' class='filter-selection'>" + escapeHtml(m) + "</label></div>";
-  }
-
-  inclMods.html(inclhtml);
 }
 
 function transformResultsByClass(diffs) {
