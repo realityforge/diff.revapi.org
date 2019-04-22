@@ -252,27 +252,6 @@ function transformResultsByClass(diffs) {
     }
     d["maxSeverity"] = maxSeverity;
 
-    var indirectUseSuffix = "API)";
-
-    d["indirectlyInOldApi"] = false;
-    var oldExample = d["attachments"]["exampleUseChainInOldApi"];
-
-    if (oldExample !== undefined && oldExample.substr(-indirectUseSuffix.length) === indirectUseSuffix) {
-      var ex = oldExample.split(" <- ").map(function (c) { return {"example" : c}});
-      ex[ex.length - 1].last = true;
-      d["exampleUseChainInOldApi"] = ex;
-      d["indirectlyInOldApi"] = true;
-    }
-
-    d["directlyInNewApi"] = false;
-    var newExample = d["attachments"]["exampleUseChainInNewApi"];
-    if (newExample !== undefined && newExample.substr(-indirectUseSuffix.length) === indirectUseSuffix) {
-      ex = newExample.split(" <- ").map(function (c) { return {"example" : c}});
-      ex[ex.length - 1].last = true;
-      d["exampleUseChainInNewApi"] = ex;
-      d["indirectlyInNewApi"] = true;
-    }
-
     classDiffs.push(d);
   });
 
