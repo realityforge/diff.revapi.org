@@ -216,17 +216,8 @@ function layoutResults() {
     return;
   }
 
-  var template = $("input[name=sort]:checked").val();
-  $.get("js/" + template + ".mustache", function (tmpl) {
-    var data;
-    switch (template) {
-      case "by-class":
-        data = transformResultsByClass(CURRENT_RESULTS);
-        break;
-      case "by-severity":
-        data = transformResultsBySeverity(CURRENT_RESULTS);
-        break;
-    }
+  $.get("js/by-class.mustache", function (tmpl) {
+    var data = transformResultsByClass(CURRENT_RESULTS);
     $("#results").html(Mustache.render(tmpl, data));
   });
 }
@@ -339,10 +330,6 @@ function transformResultsByClass(diffs) {
   }
 
   return {"types": types};
-}
-
-function transformResultsBySeverity(diffs) {
-
 }
 
 function elementSignatureToHtml(signature) {
