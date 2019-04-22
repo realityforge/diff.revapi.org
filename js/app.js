@@ -192,7 +192,14 @@ function loadApiDiff(title, key, oldVersion, newVersion) {
     "success": function (response) {
       $("#progress-rendering-stage").html("Rendering the results...");
       CURRENT_RESULTS = $.parseJSON(response);
-      layoutResults();
+      if (CURRENT_RESULTS.length === 0) {
+        $("#results").html("<div>No API differences found. Yay!</div>");
+      } else {
+        $.get('js/by-class.mustache', function(tmpl) {
+          var data = transformResultsByClass(CURRENT_RESULTS);
+          $('#results').html(Mustache.render(tmpl, data));
+        });
+      }
     }
   }).always(function () {
     var res = $("#results");
@@ -211,18 +218,6 @@ function loadApiDiff(title, key, oldVersion, newVersion) {
     $('html, body').animate({
       scrollTop: res.offset().top
     }, 500);
-  });
-}
-
-function layoutResults() {
-  if (CURRENT_RESULTS.length === 0) {
-    $("#results").html("<div>No API differences found. Yay!</div>");
-    return;
-  }
-
-  $.get("js/by-class.mustache", function (tmpl) {
-    var data = transformResultsByClass(CURRENT_RESULTS);
-    $("#results").html(Mustache.render(tmpl, data));
   });
 }
 
