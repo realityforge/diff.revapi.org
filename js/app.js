@@ -59,23 +59,17 @@ function wireUp() {
       queryParams[kv[0]] = kv[1];
     }
 
+    var title = queryParams["title"];
+    var key = queryParams["key"];
     var oldVersion = queryParams["old"];
     var newVersion = queryParams["new"];
-    var groupId = queryParams["groupId"];
-    var artifactId = queryParams["artifactId"];
 
-    $("#groupId").val(groupId);
-    $("#artifactId").val(artifactId);
-    $("#oldVersion").val(oldVersion);
-    $("#newVersion").val(newVersion);
-
-
-    if (oldVersion !== undefined && newVersion !== undefined && groupId !== undefined && artifactId !== undefined) {
-      var oldArtifact = groupId + ":" + artifactId + ":" + oldVersion;
-      var newArtifact = groupId + ":" + artifactId + ":" + newVersion;
-      apiCheck(oldArtifact, newArtifact);
+    if (title !== undefined && key !== undefined && oldVersion !== undefined && newVersion !== undefined) {
+      loadApiDiff(title, key, oldVersion, newVersion);
+      return
     }
   }
+    $("#results").html("<h5>Error</h5><div class='row'><pre class='left'>Failed to pass title, key, old and new query parameters.</pre></div>").show();
 }
 
 function isValue(val) {
@@ -173,19 +167,15 @@ function filter_results() {
   });
 }
 
-function apiCheck(oldArtifact, newArtifact) {
+function loadApiDiff(title, key, oldVersion, newVersion) {
   $.ajax({
     "beforeSend": function () {
       $("#progress").show();
       $("#results").hide().html("");
       $("#not-not-all-results-shown").hide();
-      $("#progress-rendering-stage").html("The backend computes the diff. This may take a while...");
+      $("#progress-rendering-stage").html("Loading API diff file. This may take a while...");
     },
-    "url": "check",
-    "data": {
-      "old": oldArtifact,
-      'new': newArtifact
-    },
+    "url": key + "-" + oldVersion + "-to-" + newVersion + ".json",
     "error": function () {
       CURRENT_RESULTS = null;
       $("#results").html("<h5>Error</h5><div class='row'><pre class='left'>Unable to locate API diff file.</pre></div>");
