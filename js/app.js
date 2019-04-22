@@ -230,7 +230,7 @@ function transformResultsByClass(diffs) {
       classDef["differences"] = classDiffs;
     }
 
-    if ( d["oldElement"] != d["newElement"] ) {
+    if (d["oldElement"] !== d["newElement"] ) {
       if (d["oldElement"] !== null) {
         d["oldElement"] = elementSignatureToHtml(d["oldElement"]);
       }
