@@ -35,28 +35,6 @@
         <h1 id="main-title">API Diff</h1>
       </div>
       <div class="row middle">
-        Compare 2 versions of a Maven artifact for API differences.
-      </div>
-      <div class="row middle">
-        <div class="one-half column">
-        <input type="text" id="groupId" class="u-full-width" placeholder="Group Id" autofocus form="form"/>
-        </div>
-        <div class="one-half column">
-          <input type="text" id="artifactId" class="u-full-width" placeholder="Artifact Id" form="form"/>
-        </div>
-      </div>
-      <div class="row middle">
-        <div class="one-half column">
-          <input type="text" id="oldVersion" class="u-full-width" placeholder="Old Version" form="form"/>
-        </div>
-        <div class="one-half column">
-          <input type="text" id="newVersion" class="u-full-width" placeholder="New Version" form="form"/>
-        </div>
-      </div>
-      <div class="row middle">
-        <input id="compare" type="submit" value="Compare" class="u-full-width button-primary" form="form"/>
-      </div>
-      <div class="row middle">
         <div id="progress">
           <div id="spinner" class="spinner">
             <div class="double-bounce1"></div>
@@ -70,7 +48,6 @@
         <div id="results"></div>
       </div>
     </div>
-    <form id="form"></form>
     <div id="menu-icon">&#9776;</div>
     <div id="filter" class="container">
       <div class="close" id="filter-close">&times;</div>

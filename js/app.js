@@ -19,29 +19,6 @@ var CURRENT_RESULTS;
 $(document).ready(wireUp);
 
 function wireUp() {
-  $("#form").submit(function () {
-    var groupId = $("#groupId")[0].value;
-    var artifactId = $("#artifactId")[0].value;
-    var oldVersion = $("#oldVersion")[0].value;
-    var newVersion = $("#newVersion")[0].value;
-
-    var oldArtifact = groupId + ":" + artifactId + ":" + oldVersion;
-    var newArtifact = groupId + ":" + artifactId + ":" + newVersion;
-
-    apiCheck(oldArtifact, newArtifact);
-
-    var l = window.location.href;
-    var q = l.lastIndexOf("?");
-    if (q !== -1) {
-      l = l.substring(0, q);
-    }
-    l += "?groupId=" + groupId + "&artifactId=" + artifactId + "&old=" + oldVersion + "&new=" + newVersion;
-
-    window.history.pushState({}, "", l);
-
-    return false;
-  });
-
   $("#progress").hide();
   $("#results").hide();
 
