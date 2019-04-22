@@ -73,10 +73,6 @@ function wireUp() {
 
   $("#filter-close").click(closeFilter);
 
-  processUrlInput();
-}
-
-function processUrlInput() {
   if (window.location.search !== undefined && window.location.search !== "") {
     var keyValues = window.location.search.substring(1).split("&");
     var queryParams = {};
