@@ -181,7 +181,7 @@ function loadApiDiff(title, key, oldVersion, newVersion) {
       $("#not-not-all-results-shown").hide();
       $("#progress-rendering-stage").html("Loading API diff file. This may take a while...");
     },
-    "url": key + "-" + oldVersion + "-to-" + newVersion + ".json",
+    "url": "data/" + key + "/" + oldVersion + "-to-" + newVersion + ".json",
     "error": function () {
       CURRENT_RESULTS = null;
       $("#results").html("<h5>Error</h5><div class='row'><pre class='left'>Unable to locate API diff file.</pre></div>");
