@@ -19,7 +19,6 @@ var CURRENT_RESULTS;
 $(document).ready(wireUp);
 
 function wireUp() {
-  $("#progress").hide();
   var results = $("#results");
   results.hide();
 
@@ -174,10 +173,8 @@ function filter_results() {
 }
 
 function loadApiDiff(title, key, oldVersion, newVersion) {
-  $("#progress").show();
   $("#results").hide().html("");
   $("#not-not-all-results-shown").hide();
-  $("#progress-rendering-stage").html("Loading API diff file. This may take a while...");
   $.ajax({
     "url": "data/" + key + "/" + oldVersion + "-to-" + newVersion + ".json",
     "error": function () {
