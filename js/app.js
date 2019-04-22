@@ -173,6 +173,10 @@ function filter_results() {
 }
 
 function loadApiDiff(title, key, oldVersion, newVersion) {
+  var pageTitle = escapeHtml(title) + " API Diff: v" + escapeHtml(oldVersion) + " to v" + escapeHtml(newVersion);
+  $("#main-title").text(pageTitle);
+  document.title = pageTitle;
+
   $("#results").hide();
   $("#not-not-all-results-shown").hide();
   $.ajax({
@@ -197,10 +201,6 @@ function loadApiDiff(title, key, oldVersion, newVersion) {
       }
     }
   }).always(function () {
-    var pageTitle = escapeHtml(title) + " API Diff: v" + escapeHtml(oldVersion) + " to v" + escapeHtml(newVersion);
-    $("#main-title").text(pageTitle);
-    document.title = pageTitle;
-
     $("#progress").hide();
 
     setTimeout(function () {
