@@ -234,8 +234,7 @@ function layoutResults() {
         data = transformResultsBySeverity(CURRENT_RESULTS);
         break;
     }
-    var rendered = Mustache.render(tmpl, data);
-    $("#results").html(rendered);
+    $("#results").html(Mustache.render(tmpl, data));
   });
 }
 
