@@ -173,7 +173,7 @@ function filter_results() {
 }
 
 function loadApiDiff(title, key, oldVersion, newVersion) {
-  $("#results").hide().html("");
+  $("#results").hide();
   $("#not-not-all-results-shown").hide();
   $.ajax({
     "url": "data/" + key + "/" + oldVersion + "-to-" + newVersion + ".json",
