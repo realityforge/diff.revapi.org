@@ -191,6 +191,9 @@ function loadApiDiff(title, key, oldVersion, newVersion) {
   }).always(function () {
     var res = $("#results");
 
+    var pageTitle = escapeHtml(title) + " API Diff: v" + escapeHtml(oldVersion) + " to v" + escapeHtml(newVersion);
+    $("#main-title").text(pageTitle);
+    document.title = pageTitle;
 
     $("#progress").hide();
 
