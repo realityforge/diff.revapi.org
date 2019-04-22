@@ -202,8 +202,6 @@ function loadApiDiff(title, key, oldVersion, newVersion) {
       }
     }
   }).always(function () {
-    var res = $("#results");
-
     var pageTitle = escapeHtml(title) + " API Diff: v" + escapeHtml(oldVersion) + " to v" + escapeHtml(newVersion);
     $("#main-title").text(pageTitle);
     document.title = pageTitle;
@@ -212,11 +210,7 @@ function loadApiDiff(title, key, oldVersion, newVersion) {
 
     setTimeout(function () {
       filter_results();
-      res.show();
-    }, 500);
-
-    $('html, body').animate({
-      scrollTop: res.offset().top
+      $("#results").show();
     }, 500);
   });
 }
