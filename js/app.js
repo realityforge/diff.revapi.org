@@ -239,15 +239,12 @@ function apiCheck(oldArtifact, newArtifact) {
     },
     "success": function (response) {
       $("#progress-rendering-stage").html("Rendering the results...");
-      console.info("response of type " + typeof(response) + " received...");
       CURRENT_RESULTS = $.parseJSON(response);
       layoutResults();
     }
   }).always(function () {
-    console.info("always called.");
     var res = $("#results");
 
-    console.info("results should be visible...");
 
     $("#progress").hide();
 
