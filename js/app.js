@@ -20,7 +20,8 @@ $(document).ready(wireUp);
 
 function wireUp() {
   $("#progress").hide();
-  $("#results").hide();
+  var results = $("#results");
+  results.hide();
 
   $("#severity-value").on("input change", function () {
     var currentSeverity = Number(this.value);
@@ -69,7 +70,7 @@ function wireUp() {
       return
     }
   }
-    $("#results").html("<h5>Error</h5><div class='row'><pre class='left'>Failed to pass title, key, old and new query parameters.</pre></div>").show();
+    results.html("<h5>Error</h5><div class='row'><pre class='left'>Failed to pass title, key, old and new query parameters.</pre></div>").show();
 }
 
 function isValue(val) {
