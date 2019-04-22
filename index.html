@@ -56,16 +56,6 @@
         <input title="severity" id="severity-value" type="range" min="0" max="3" value="2"/>
         <div id="severity-display"></div>
       </div>
-      <!-- The severity ordering is not yet implemented -->
-      <div class="row" style="display:none">
-        <label>Sort by</label>
-        <label for="sort1" class="filter-selection">
-          <input type="radio" name="sort" value="by-class" id="sort1" checked>Class
-        </label>
-        <label for="sort2" class="filter-selection">
-          <input type="radio" name="sort" value="by-severity" id="sort2">Severity
-        </label>
-      </div>
       <div class="row">
         <label for="included-packages">Only Include packages</label>
         <input class="filter-selection" style="width: 100%" type="text" id="included-packages" name="included-packages" placeholder="Comma separated for regexes for package names..."/>
