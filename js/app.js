@@ -52,8 +52,6 @@ function wireUp() {
     filter_results();
   }).change();
 
-  $("#include-deps").change(filter_results);
-
   $("#included-packages").change(filter_results);
   $("#excluded-packages").change(filter_results);
 
