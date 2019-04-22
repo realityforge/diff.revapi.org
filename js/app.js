@@ -113,9 +113,6 @@ function isValue(val) {
 
 function filter_results() {
   var severityValue = Number($("#severity-value").val());
-  var includeDeps = $("#include-deps").get(0).checked;
-
-  var mainModulePrefix = $("#groupId").val() + ":" + $("#artifactId").val() + ":";
 
   var inclPkgs = $("#included-packages").val().split(/\s*,\s*/);
   var exclPkgs = $("#excluded-packages").val().split(/\s*,\s*/);
