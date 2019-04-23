@@ -211,17 +211,27 @@ function loadApiDiff(title, key, oldVersion, newVersion) {
 }
 
 function transformResultsByClass(diffs) {
+  var byPackageByClass = {};
   var byClass = {};
 
   diffs.forEach(function (d) {
-    var className = d["attachments"]["package"] + "." + d["attachments"]["classSimpleName"];
+    var packageName = d["attachments"]["package"];
+    var qualifiedClassName = d["attachments"]["classQualifiedName"];
+    var localClassName = qualifiedClassName.substring(packageName.length + 1);
+    var byPackage = byPackageByClass[packageName];
+    if( undefined === byPackage ) {
+      byPackage = {};
+      byPackageByClass[packageName] = byPackage;
+      byPackage["packageName"] = packageName;
+      byPackage["types"] = {}
+    }
 
-    var classDef = byClass[className];
-    if (classDef === undefined) {
+    var classDef = byPackage["types"][localClassName];
+    if (undefined === classDef) {
       classDef = {};
-      byClass[className] = classDef;
-      classDef["className"] = className;
-      classDef["packageName"] = d["attachments"]["package"];
+      byPackage["types"][localClassName] = classDef;
+      classDef["className"] = localClassName;
+      classDef["packageName"] = packageName;
     }
 
     var classDiffs = classDef["differences"];
@@ -256,24 +266,31 @@ function transformResultsByClass(diffs) {
     classDiffs.push(d);
   });
 
-  var types = [];
+  var packages = [];
 
-  for (var i in byClass) {
-    var type = byClass[i];
+  for (var i in byPackageByClass) {
+    //noinspection JSUnfilteredForInLoop
+    var pkg = byPackageByClass[i];
+    var types = [];
+    for (var j in pkg["types"]) {
+      var type = pkg["types"][j];
 
-    var maxSeverity = -1;
-    for (var j in type["differences"]) {
-      var curSev = type["differences"][j]["maxSeverity"];
-      if (curSev > maxSeverity) {
-        maxSeverity = curSev;
+      var maxSeverity = -1;
+      for (var k in type['differences']) {
+        var curSev = type['differences'][k]['maxSeverity'];
+        if (curSev > maxSeverity) {
+          maxSeverity = curSev;
+        }
       }
+      type['maxSeverity'] = maxSeverity;
+      types.push(type);
     }
-    type["maxSeverity"] = maxSeverity;
-
-    types.push(type);
+    pkg["types"] = types.sort();
+    packages.push(pkg);
   }
 
-  return {"types": types};
+  console.log(packages);
+  return {"packages": packages.sort()};
 }
 
 function elementSignatureToHtml(signature) {

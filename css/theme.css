@@ -184,8 +184,13 @@ label[for] {
 
 }
 
-.title-class-name {
+.title-package-name {
   font-size: 200%;
+  font-weight: bold;
+}
+
+.title-class-name {
+  font-size: 150%;
   font-weight: bold;
 }
 
