@@ -352,7 +352,7 @@ function elementSignatureToHtml(signature) {
 }
 
 function typeParametersToHtml(typeParameters) {
-  if (typeParameters == null || typeParameters === undefined || typeParameters.length === 0) {
+  if (null == typeParameters || typeParameters.length === 0) {
     return "";
   }
 
