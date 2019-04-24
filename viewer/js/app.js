@@ -69,12 +69,12 @@ function wireUp() {
       results.html("<h5>Error</h5><div class='row'><pre class='left'>Malformed query parameter. Must not attempt to walk paths.</pre></div>").show();
       return;
     }
-    else if (title !== undefined && key !== undefined && oldVersion !== undefined && newVersion !== undefined) {
-      loadApiDiff(title, key, oldVersion, newVersion);
+    else if (key !== undefined && oldVersion !== undefined && newVersion !== undefined) {
+      loadApiDiff(title || key, key, oldVersion, newVersion);
       return
     }
   }
-    results.html("<h5>Error</h5><div class='row'><pre class='left'>Failed to pass title, key, old and new query parameters.</pre></div>").show();
+    results.html("<h5>Error</h5><div class='row'><pre class='left'>Failed to pass key, old and new query parameters.</pre></div>").show();
 }
 
 function isValue(val) {
