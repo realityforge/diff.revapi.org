@@ -240,7 +240,11 @@ function transformResultsByClass(diffs) {
       classDef["differences"] = classDiffs;
     }
 
-    if (d["oldElement"] !== d["newElement"] ) {
+    if (d["element"]) {
+      d["element"] = elementSignatureToHtml(d["element"]);
+      d["oldElement"] = null;
+      d["newElement"] = null;
+    } else {
       if (d["oldElement"]) {
         d["oldElement"] = elementSignatureToHtml(d["oldElement"]);
       }
@@ -248,10 +252,6 @@ function transformResultsByClass(diffs) {
       if (d["newElement"]) {
         d["newElement"] = elementSignatureToHtml(d["newElement"]);
       }
-    } else {
-      d["element"] = elementSignatureToHtml(d["newElement"]);
-      d["oldElement"] = null;
-      d["newElement"] = null;
     }
 
     var maxSeverity = -1;
