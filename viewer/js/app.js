@@ -241,11 +241,11 @@ function transformResultsByClass(diffs) {
     }
 
     if (d["oldElement"] !== d["newElement"] ) {
-      if (d["oldElement"] !== null) {
+      if (d["oldElement"]) {
         d["oldElement"] = elementSignatureToHtml(d["oldElement"]);
       }
 
-      if (d["newElement"] !== null) {
+      if (d["newElement"]) {
         d["newElement"] = elementSignatureToHtml(d["newElement"]);
       }
     } else {
