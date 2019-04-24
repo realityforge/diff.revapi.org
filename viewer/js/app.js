@@ -180,7 +180,7 @@ function loadApiDiff(title, key, oldVersion, newVersion) {
   $("#results").hide();
   $("#not-not-all-results-shown").hide();
   $.ajax({
-    "url": "data/" + key + "/" + oldVersion + "-to-" + newVersion + ".json",
+    "url": "data/" + key + "/" + oldVersion + "-" + newVersion + ".json",
     "error": function () {
       CURRENT_RESULTS = null;
       $("#results").html("<h5>Error</h5><div class='row'><pre class='left'>Unable to locate API diff file.</pre></div>");
