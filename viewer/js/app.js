@@ -289,7 +289,6 @@ function transformResultsByClass(diffs) {
     packages.push(pkg);
   }
 
-  console.log(packages);
   return {"packages": packages.sort()};
 }
 
